@@ -1,18 +1,73 @@
 #include <iostream>
+#include <sys/stat.h>
+#include <unistd.h>
+#include <sstream>
+#include <string>
+#include <fstream>
+#include <vector>
 using namespace std;
 
-string get_command_line_parameter()
+bool DoesFileExists(string fileName)
 {
-    int number_arguments; 
+    std::ifstream infile(fileName);
+    return infile.good();
 }
+
 
 int main(int argc, char** argv) 
 {
-
-    if(argc < 2)
-        cout<< "Sono 2"<<endl;
+    // I need to pass the argument when when running with ./a.out
+    //cout << "There are " << argc << " arguments:\n";
+    if(argc != 2)
+    {
+        cout << "To the program start, the name of the file input must be proviveded"<<endl;
+        cout <<"Run again the application indicating the name of input file name" <<endl;
+        return 0; 
+    }
     else
-        cout << "Tree";
+    {
+        string input_file_name = argv[1];
+        string output_file_name = input_file_name + ".csn";
+        input_file_name += ".cav";
+        if(! DoesFileExists(input_file_name))
+        {
+            cout <<"The file name indicated has not been found, mind to indicate the file without the format extensioon .bat"<<endl;
+            return 0; 
+        }
+        else
+        {
+            cout <<"File found"<<endl;
+
+            // Open stream file, il primo numero e' il numero di vertici nel grafo; 
+            ifstream infile; 
+             infile.open(input_file_name);
+    
+                // Read Input
+                vector<int> vect;
+                std::string str;
+                while (getline(infile ,str)) {
+                    std::stringstream ss(str);
+
+                    for (int i; ss >> i;) {
+                        vect.push_back(i);    
+                        if (ss.peek() == ',')
+                            ss.ignore();
+                    }
+                    
+                    for (int i = 0; i < vect.size(); i++)
+                        cout << vect[i] << " ";
+                }
+
+                // Store number of vertext; 
+                unsigned long int number_caves = vect[0];
+
+                /*
+                    // Read boolean for adjency matrix
+                    for(int i = number_caves*2 +1; i< vect.size(); i++);
+                */
+
+        }
+    }
 
     return 0; 
 }
