@@ -47,7 +47,7 @@ namespace coursework_40401270
             for (int i = 0; i < cavesNumber; i++)
             {
                 
-                caves[i] = new Cave(Convert.ToDouble(values[i * 2 + offset]), Double.parseDouble(values[i * 2 + offset + 1]), "" + (i + 1));
+                caves[i] = new Cave(Convert.ToDouble(values[i * 2 + offset]), Convert.ToDouble(values[i * 2 + offset + 1]), "" + (i + 1));
             }
 
             offset = 1 + 2 * cavesNumber; // we jump the cave's number and the cave's locations
@@ -105,12 +105,12 @@ namespace coursework_40401270
                 if (ALGO == "DIJKSTRA")
                 {
                     // DIJKSTRA
-                    Collections.sort(toExplore, (o1, o2)-> (int)((o1.getDistanceFromStart() - o2.getDistanceFromStart())));
+                    ICollection.Sort(toExplore, (o1, o2)-> (int)((o1.getDistanceFromStart() - o2.getDistanceFromStart())));
                 }
                 else
                 {
                     // ASTAR
-                    Collections.sort(toExplore, (o1, o2)-> (Int)((o1.getDistanceFromStart() - o2.getDistanceFromStart()) +
+                    Collections.sort(toExplore, (o1, o2)-> int)((o1.getDistanceFromStart() - o2.getDistanceFromStart()) +
                                                                    (o1.getDistance(endingCave) - o2.getDistance(endingCave))));
                 }
 
