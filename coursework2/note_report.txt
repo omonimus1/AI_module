@@ -1,0 +1,5 @@
+1) Spiegare cos'e' keras
+2)Spiegare cos'e' tensort (required by Keras)
+3) spiegare contenuto  IMDB dataset
+4) obiettivo cousework :  develop a sentiment classification model for the given dataset.
+5) Usare bag of words e dire perche' l' ho scelto 
